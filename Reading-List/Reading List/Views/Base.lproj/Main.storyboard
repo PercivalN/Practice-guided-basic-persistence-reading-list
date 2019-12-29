@@ -50,7 +50,30 @@
                     <view key="view" contentMode="scaleToFill" id="0Hj-Va-CPm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UU5-Kt-aHN">
+                                <rect key="frame" x="25" y="140" width="364" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Reason to read:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ecj-9q-Rg7">
+                                <rect key="frame" x="25" y="199" width="364" height="663"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ObX-ju-5zm" firstAttribute="trailing" secondItem="UU5-Kt-aHN" secondAttribute="trailing" constant="25" id="CaU-HS-NS4"/>
+                            <constraint firstItem="Ecj-9q-Rg7" firstAttribute="trailing" secondItem="UU5-Kt-aHN" secondAttribute="trailing" id="WfN-va-WlH"/>
+                            <constraint firstItem="Ecj-9q-Rg7" firstAttribute="leading" secondItem="UU5-Kt-aHN" secondAttribute="leading" id="cf8-xm-REf"/>
+                            <constraint firstItem="Ecj-9q-Rg7" firstAttribute="top" secondItem="UU5-Kt-aHN" secondAttribute="bottom" constant="25" id="gyJ-Rd-2nJ"/>
+                            <constraint firstItem="ObX-ju-5zm" firstAttribute="bottom" secondItem="Ecj-9q-Rg7" secondAttribute="bottom" id="hJv-mM-FSo"/>
+                            <constraint firstItem="UU5-Kt-aHN" firstAttribute="leading" secondItem="ObX-ju-5zm" secondAttribute="leading" constant="25" id="rDf-ka-MvU"/>
+                            <constraint firstItem="UU5-Kt-aHN" firstAttribute="top" secondItem="ObX-ju-5zm" secondAttribute="top" id="u2X-Zc-aRf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ObX-ju-5zm"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="tSN-NZ-HBk">
