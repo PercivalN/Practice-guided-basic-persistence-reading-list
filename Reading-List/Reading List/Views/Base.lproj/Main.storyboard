@@ -36,6 +36,9 @@
                                                 <constraint firstAttribute="width" secondItem="ku9-WU-pW0" secondAttribute="height" multiplier="1:1" id="uSn-PB-Eo9"/>
                                             </constraints>
                                             <state key="normal" image="unchecked"/>
+                                            <connections>
+                                                <action selector="checkboxButton:" destination="yzF-fv-iM3" eventType="touchUpInside" id="jhK-ZV-V47"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -46,6 +49,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="buttonLabel" destination="ku9-WU-pW0" id="Fkn-wg-P20"/>
+                                    <outlet property="titleLabel" destination="jum-J0-jI4" id="GPd-Nt-t5E"/>
                                     <segue destination="uGZ-BN-dBc" kind="show" identifier="ShowDetailSegue" id="Ej9-gm-BwQ"/>
                                 </connections>
                             </tableViewCell>

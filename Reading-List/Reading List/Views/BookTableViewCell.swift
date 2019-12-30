@@ -10,6 +10,11 @@ import UIKit
 
 class BookTableViewCell: UITableViewCell {
 
+	// MARK: - Outlets
+	@IBOutlet weak var titleLabel: UILabel!
+	@IBOutlet weak var buttonLabel: UIButton!
+
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +25,9 @@ class BookTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
+	// MARK: - Actions
+	@IBAction func checkboxButton(_ sender: Any) {
+	}
 
 }
