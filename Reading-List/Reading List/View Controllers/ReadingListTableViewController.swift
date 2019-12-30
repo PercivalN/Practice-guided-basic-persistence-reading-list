@@ -37,7 +37,11 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
 
     // MARK: - Table view data source
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		<#code#>
+		if section == 0 {
+			return "Read Books"
+		} else {
+			return "Unread Books"
+		}
 	}
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,7 +51,7 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if section == 0 {
 			return bookController.readBooks.count
-		} else if section == 1 {
+		} else {
 			return bookController.unreadBooks.count
 		}
     }
