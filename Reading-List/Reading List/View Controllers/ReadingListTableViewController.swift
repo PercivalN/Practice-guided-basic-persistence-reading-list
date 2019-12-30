@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReadingListTableViewController: UITableViewController {
+class ReadingListTableViewController: UITableViewController, BookTableViewCellDelegate {
 
 	// MARK: - Properties
 	let bookController = BookController()
@@ -26,6 +26,13 @@ class ReadingListTableViewController: UITableViewController {
 	// MARK: - Helper methods
 	func bookFor(indexpath: IndexPath) -> Book {
 		bookController.books[indexpath.row]
+	}
+
+	func toggleHasBeenRead(for cell: BookTableViewCell) {
+		guard let indexPath = tableView.indexPath(for: cell) else { return }
+		let book = bookFor(indexpath: indexPath)
+		bookController.updateHasBeenRead(for: book)
+		tableView.reloadData()
 	}
 
     // MARK: - Table view data source
