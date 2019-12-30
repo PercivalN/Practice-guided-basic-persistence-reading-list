@@ -18,6 +18,8 @@ class BookTableViewCell: UITableViewCell {
 	// MARK: - Properties
 	var book: Book?
 
+	var delegate: BookTableViewCellDelegate?
+
 	// MARK: - Methods
 	func updateViews() {
 
@@ -38,6 +40,7 @@ class BookTableViewCell: UITableViewCell {
 
 	// MARK: - Actions
 	@IBAction func checkboxButton(_ sender: Any) {
+		delegate?.toggleHasBeenRead(for: self)
 	}
 
 }
