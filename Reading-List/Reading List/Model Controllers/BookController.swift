@@ -19,7 +19,15 @@ class BookController {
 		return dir.appendingPathComponent("ReadingList.plist")
 	}
 
-	// MARK: - Persistent Methods
+	var readBooks: [Book] {
+		return books.filter { $0.hasBeenRead }
+	}
+
+	var unreadBooks: [Book] {
+		return books.filter { !$0.hasBeenRead }
+	}
+
+	// MARK: - Persistence Methods
 	func saveToPersistentStore() {
 		guard let url = readingListURL else { return }
 
@@ -74,6 +82,8 @@ class BookController {
 		}
 		saveToPersistentStore()
 	}
+
+	
 
 	
 }
