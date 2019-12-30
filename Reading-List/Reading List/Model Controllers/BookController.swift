@@ -13,9 +13,23 @@ class BookController {
 	// MARK: -
 	var books: [Book] = []
 
-	var readingListURL: URL? {
+	private var readingListURL: URL? {
 		let fm = FileManager.default
 		guard let dir = fm.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
 		return dir.appendingPathComponent("ReadingList.plist")
 	}
+
+	func saveToPersistentStore() {
+		guard let url = readingListURL else { return }
+
+		do {
+			let encoder = PropertyListEncoder()
+			let data = try encoder.encode(books)
+			try data.write(to: url)
+		} catch {
+			NSLog("Error saving books data: \(error)")
+		}
+	}
+
+	
 }
