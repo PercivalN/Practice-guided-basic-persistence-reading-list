@@ -10,7 +10,7 @@ import Foundation
 
 class BookController {
 
-	// MARK: -
+	// MARK: - Properties
 	var books: [Book] = []
 
 	private var readingListURL: URL? {
@@ -19,6 +19,7 @@ class BookController {
 		return dir.appendingPathComponent("ReadingList.plist")
 	}
 
+	// MARK: - Persistent Methods
 	func saveToPersistentStore() {
 		guard let url = readingListURL else { return }
 
@@ -31,5 +32,16 @@ class BookController {
 		}
 	}
 
-	
+	func loadFromPersistentStore() {
+
+		do {
+			guard let url = readingListURL else { return }
+			let data = try Data(contentsOf: url)
+			let decoder = PropertyListDecoder()
+			let decodedBooks = try decoder.decode([Book].self, from: data)
+			books = decodedBooks
+		} catch {
+			NSLog("There is an error loading books data: \(error)")
+		}
+	}
 }
