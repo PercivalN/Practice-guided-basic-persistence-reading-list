@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BookDetailViewController.swift
 //  Reading List
 //
 //  Created by Spencer Curtis on 7/31/18.
@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BookDetailViewController: UIViewController {
+
+	//MARK: - Outlets
+	@IBOutlet weak var titleTextField: UITextField!
+	@IBOutlet weak var reasonToReadTextView: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +23,10 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+	// MARK: - Actions
+	@IBAction func saveButton(_ sender: Any) {
+	}
 
 
 }

@@ -75,7 +75,7 @@
         <!--Title-->
         <scene sceneID="8dj-6t-YZF">
             <objects>
-                <viewController id="uGZ-BN-dBc" sceneMemberID="viewController">
+                <viewController id="uGZ-BN-dBc" customClass="BookDetailViewController" customModule="Reading_List" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Hj-Va-CPm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,8 +106,16 @@
                         <viewLayoutGuide key="safeArea" id="ObX-ju-5zm"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="tSN-NZ-HBk">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JYQ-6J-Hdd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JYQ-6J-Hdd">
+                            <connections>
+                                <action selector="saveButton:" destination="uGZ-BN-dBc" id="QE3-Wc-4jX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="reasonToReadTextView" destination="Ecj-9q-Rg7" id="otm-hS-Yl6"/>
+                        <outlet property="titleTextField" destination="UU5-Kt-aHN" id="8AK-tJ-lHK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVF-Ws-dil" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
