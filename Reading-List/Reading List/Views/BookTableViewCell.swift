@@ -15,6 +15,16 @@ class BookTableViewCell: UITableViewCell {
 	@IBOutlet weak var buttonLabel: UIButton!
 
 
+	// MARK: - Properties
+	var book: Book?
+
+	// MARK: - Methods
+	func updateViews() {
+
+		titleLabel.text = book?.title
+		buttonLabel.imageView?.image = UIImage(named: "unchecked")
+	}
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
