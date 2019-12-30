@@ -8,22 +8,46 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Reading List Table View Controller-->
         <scene sceneID="Bk7-Su-wW9">
             <objects>
-                <tableViewController id="SBo-BT-cgL" sceneMemberID="viewController">
+                <tableViewController id="SBo-BT-cgL" customClass="ReadingListTableViewController" customModule="Reading_List" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bjn-X2-Md5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" id="yzF-fv-iM3">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" id="yzF-fv-iM3" customClass="BookTableViewCell" customModule="Reading_List" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yzF-fv-iM3" id="HvX-6d-T5E">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jum-J0-jI4">
+                                            <rect key="frame" x="20" y="11.5" width="77" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ku9-WU-pW0">
+                                            <rect key="frame" x="336" y="-3.5" width="50" height="50.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ku9-WU-pW0" secondAttribute="height" multiplier="1:1" id="uSn-PB-Eo9"/>
+                                            </constraints>
+                                            <state key="normal" image="unchecked"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="ku9-WU-pW0" secondAttribute="trailing" constant="28" id="BPi-PW-LKV"/>
+                                        <constraint firstItem="ku9-WU-pW0" firstAttribute="centerY" secondItem="HvX-6d-T5E" secondAttribute="centerY" id="LDD-bG-IeT"/>
+                                        <constraint firstItem="jum-J0-jI4" firstAttribute="centerY" secondItem="HvX-6d-T5E" secondAttribute="centerY" id="POC-Ja-pie"/>
+                                        <constraint firstItem="jum-J0-jI4" firstAttribute="leading" secondItem="HvX-6d-T5E" secondAttribute="leading" constant="20" id="gaV-SV-bUG"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="uGZ-BN-dBc" kind="show" identifier="ShowDetailSegue" id="Ej9-gm-BwQ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -34,7 +58,7 @@
                     <navigationItem key="navigationItem" id="CB7-p0-VA3">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="v0N-E1-vSD">
                             <connections>
-                                <segue destination="uGZ-BN-dBc" kind="show" id="tem-jc-8O7"/>
+                                <segue destination="uGZ-BN-dBc" kind="show" identifier="AddBookSegue" id="tem-jc-8O7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -82,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVF-Ws-dil" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="968" y="37"/>
+            <point key="canvasLocation" x="888" y="37"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J1M-eb-I0R">
@@ -103,4 +127,10 @@
             <point key="canvasLocation" x="-625" y="37"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="unchecked" width="50" height="50"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="tem-jc-8O7"/>
+    </inferredMetricsTieBreakers>
 </document>
