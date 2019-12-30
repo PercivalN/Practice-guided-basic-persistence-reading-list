@@ -44,4 +44,36 @@ class BookController {
 			NSLog("There is an error loading books data: \(error)")
 		}
 	}
+
+	// MARK: - CRUD Methods
+	func createABook(title: String, reasonToRead: String, hasBeenRead: Bool) {
+		let book = Book(title: title, reasonToRead: reasonToRead, hasBeenRead: hasBeenRead)
+		books.append(book)
+		saveToPersistentStore()
+	}
+
+	func deleteABook(book: Book) {
+		guard let index = books.firstIndex(of: book) else { return }
+		books.remove(at: index)
+		saveToPersistentStore()
+	}
+
+	func updateHasBeenRead(for book: Book) {
+		guard let index = books.firstIndex(of: book) else { return }
+		books[index].hasBeenRead.toggle()
+		saveToPersistentStore()
+	}
+
+	func updateBook(title: String?, reasonToRead reason: String?, book: Book) {
+		guard let index = books.firstIndex(of: book) else { return }
+		if let title = title {
+			books[index].title = title
+		}
+		if let reason = reason {
+			books[index].reasonToRead = reason
+		}
+		saveToPersistentStore()
+	}
+
+	
 }
