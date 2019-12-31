@@ -13,10 +13,10 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
 	// MARK: - Properties
 	let bookController = BookController()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
-    }
+	}
 
 	// MARK: - Helper methods
 	func bookFor(indexpath: IndexPath) -> Book {
@@ -30,7 +30,7 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
 		tableView.reloadData()
 	}
 
-    // MARK: - Table view data source
+	// MARK: - Table view data source
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if section == 0 {
 			return "Read Books"
@@ -40,69 +40,49 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
 	}
 
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 2
+	}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if section == 0 {
 			return bookController.readBooks.count
 		} else {
 			return bookController.unreadBooks.count
 		}
-    }
+	}
 
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
 
 		guard let bookCell = cell as? BookTableViewCell else { return cell }
 		bookCell.delegate = self
 		bookCell.book = bookFor(indexpath: indexPath)
 
 		return bookCell
-    }
+	}
 
+	// Override to support editing the table view.
+	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			tableView.deleteRows(at: [indexPath], with: .fade)
+		}
+	}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+	// MARK: - Navigation
 
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "AddBookSegue" {
+			if let addBookVC = segue.destination as? BookDetailViewController {
+			addBookVC.bookController = bookController
+		} else if segue.identifier == "ShowDetailSegue" {
+			if let indexPath = tableView.indexPathForSelectedRow,
+				let showDetailVC = segue.destination as? BookDetailViewController {
+				showDetailVC.book = bookFor(indexpath: indexPath)
+				showDetailVC.bookController = bookController
+			}
+		}
+	}
+}
 }
