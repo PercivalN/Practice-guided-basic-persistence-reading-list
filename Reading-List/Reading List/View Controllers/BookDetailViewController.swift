@@ -14,6 +14,10 @@ class BookDetailViewController: UIViewController {
 	@IBOutlet weak var titleTextField: UITextField!
 	@IBOutlet weak var reasonToReadTextView: UITextView!
 
+	// MARK: - Properties
+	var bookController: BookController?
+	var book: Book?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
