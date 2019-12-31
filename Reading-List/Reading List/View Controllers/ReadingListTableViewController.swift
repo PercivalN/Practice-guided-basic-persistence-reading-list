@@ -39,6 +39,7 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
 		}
 	}
 
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }

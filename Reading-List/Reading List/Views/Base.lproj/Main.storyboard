@@ -37,6 +37,7 @@
                                             </constraints>
                                             <state key="normal" image="unchecked"/>
                                             <connections>
+                                                <action selector="buttonLabel:" destination="fKa-9T-cML" eventType="touchUpInside" id="3kq-FK-i98"/>
                                                 <action selector="checkboxButton:" destination="yzF-fv-iM3" eventType="touchUpInside" id="jhK-ZV-V47"/>
                                             </connections>
                                         </button>
@@ -69,6 +70,7 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J3u-WW-TL3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="fKa-9T-cML" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="167" y="37"/>
         </scene>
