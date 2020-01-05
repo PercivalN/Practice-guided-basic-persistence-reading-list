@@ -47,6 +47,7 @@
                                         <constraint firstItem="ku9-WU-pW0" firstAttribute="centerY" secondItem="HvX-6d-T5E" secondAttribute="centerY" id="LDD-bG-IeT"/>
                                         <constraint firstItem="jum-J0-jI4" firstAttribute="centerY" secondItem="HvX-6d-T5E" secondAttribute="centerY" id="POC-Ja-pie"/>
                                         <constraint firstItem="jum-J0-jI4" firstAttribute="leading" secondItem="HvX-6d-T5E" secondAttribute="leading" constant="20" id="gaV-SV-bUG"/>
+                                        <constraint firstItem="ku9-WU-pW0" firstAttribute="leading" relation="lessThanOrEqual" secondItem="jum-J0-jI4" secondAttribute="trailing" constant="239" id="v6z-sm-eN3"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

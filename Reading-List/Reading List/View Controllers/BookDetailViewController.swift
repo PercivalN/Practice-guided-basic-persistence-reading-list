@@ -17,44 +17,74 @@ class BookDetailViewController: UIViewController {
 
 	// MARK: - Properties
 	var bookController: BookController?
-	var book: Book?
+	var book: Book? {
+		didSet {
+			updateViews()
+		}
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
 		updateViews()
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
 	}
 
 	// MARK: - Methods
 	private func updateViews() {
-		if book?.title == nil {
-			titleTextField.text = book?.title
-			reasonToReadTextView.text = book?.reasonToRead
-			title = "Add a new book"
-		}
-	}
+		navigationItem.title = "Add a new book"
+		guard let book = book, isViewLoaded else { return }
+		navigationItem.title = book.title
+		titleTextField.text = book.title
+		reasonToReadTextView.text = book.reasonToRead
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+
+//		if book?.title == nil {
+//			titleTextField.text = book?.title
+//			reasonToReadTextView.text = book?.reasonToRead
+//			title = "Add a new book"
+//		}
 	}
 
 	// MARK: - Actions
-	@IBAction func saveButton(_ sender: Any) {
-		guard let title = titleTextField.text,
-		let hasBeenRead = book?.hasBeenRead,
-			let book = book,
-		let reason = reasonToReadTextView.text else { return }
+	@IBAction func saveButton(_ sender: UIButton) {
 
-		if bookController?.books == nil {
-			guard let title = titleTextField.text,
-				//let hasBeenRead = book.hasBeenRead,
-			let reason = reasonToReadTextView.text else { return }
+		if let book = book {
+			bookController?.updateBook(title: titleTextField.text, reasonToRead: reasonToReadTextView.text, book: book)
+		} else {
+			guard let title = titleTextField.text, let reason = reasonToReadTextView.text else { return }
+			bookController?.createABook(title: title, reasonToRead: reason)
+		}
+		navigationController?.popViewController(animated: true)
 
-			bookController?.createABook(title: title, reasonToRead: reason, hasBeenRead: hasBeenRead)
-		}
-		else {
-			bookController?.updateBook(title: title, reasonToRead: reason, book: book)
-		}
+//		if book == nil {
+//			guard let title = titleTextField.text, let reason = reasonToReadTextView.text else { return }
+//			bookController?.createABook(title: title, reasonToRead: reason)
+//		}
+
+			//		if let title = titleTextField.text,
+			//		let hasBeenRead = book?.hasBeenRead,
+			//			let book = book,
+			//			let reason = reasonToReadTextView.text {
+			//
+			//		print(title, hasBeenRead, reason)
+
+			//if bookController?.books == nil {
+			//guard let title = titleTextField.text,
+			//let hasBeenRead = book.hasBeenRead,
+			//let reason = reasonToReadTextView.text else { return }
+
+			//bookController?.createABook(title: title, reasonToRead: reason, hasBeenRead: hasBeenRead)
+
+//		else {
+//			if let book = book {
+//
+//				bookController?.updateBook(title: titleTextField.text, reasonToRead: reasonToReadTextView.text, book: book)
+//			}
+//			navigationController?.popViewController(animated: true)
+//		}
 	}
 }

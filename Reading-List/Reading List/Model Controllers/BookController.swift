@@ -27,6 +27,10 @@ class BookController {
 		return books.filter { !$0.hasBeenRead }
 	}
 
+	init() {
+		loadFromPersistentStore()
+	}
+
 	// MARK: - Persistence Methods
 	func saveToPersistentStore() {
 		guard let url = readingListURL else { return }
@@ -54,8 +58,8 @@ class BookController {
 	}
 
 	// MARK: - CRUD Methods
-	func createABook(title: String, reasonToRead: String, hasBeenRead: Bool) {
-		let book = Book(title: title, reasonToRead: reasonToRead, hasBeenRead: hasBeenRead)
+	func createABook(title: String, reasonToRead: String) {
+		let book = Book(title: title, reasonToRead: reasonToRead)
 		books.append(book)
 		saveToPersistentStore()
 	}

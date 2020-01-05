@@ -16,14 +16,18 @@ class BookTableViewCell: UITableViewCell {
 
 
 	// MARK: - Properties
-	var book: Book?
+	var book: Book? {
+		didSet {
+			updateViews()
+		}
+	}
 
 	var delegate: BookTableViewCellDelegate?
 
 	// MARK: - Methods
 	func updateViews() {
-
-		titleLabel.text = book?.title
+		guard let book = book else { return }
+		titleLabel.text = book.title
 		buttonLabel.imageView?.image = UIImage(named: "unchecked")
 	}
 

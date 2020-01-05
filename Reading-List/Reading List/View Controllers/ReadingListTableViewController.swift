@@ -18,16 +18,29 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
 
 	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		tableView.reloadData()
+	}
+
 	// MARK: - Helper methods
-	func bookFor(indexpath: IndexPath) -> Book {
-		bookController.books[indexpath.row]
+	func book(for indexPath: IndexPath) -> Book {
+		if indexPath.section == 0 {
+			return bookController.readBooks[indexPath.row]
+		} else {
+			return bookController.unreadBooks[indexPath.row]
+		}
 	}
 
 	func toggleHasBeenRead(for cell: BookTableViewCell) {
-		guard let indexPath = tableView.indexPath(for: cell) else { return }
-		let book = bookFor(indexpath: indexPath)
-		bookController.updateHasBeenRead(for: book)
-		tableView.reloadData()
+		if let book = cell.book {
+			bookController.updateHasBeenRead(for: book)
+			tableView.reloadData()
+		}
+//		guard let indexPath = tableView.indexPath(for: cell) else { return }
+//		let bookA = book(for: indexPath)
+//		bookController.updateHasBeenRead(for: bookA)
+//		tableView.reloadData()
 	}
 
 	// MARK: - Table view data source
@@ -57,10 +70,11 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
 		let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
 
 		guard let bookCell = cell as? BookTableViewCell else { return cell }
-		bookCell.delegate = self
-		bookCell.book = bookFor(indexpath: indexPath)
 
-		return bookCell
+		bookCell.book = book(for: indexPath)
+		bookCell.delegate = self
+
+		return cell
 	}
 
 	// Override to support editing the table view.
@@ -73,16 +87,24 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
 	// MARK: - Navigation
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "AddBookSegue" {
-			if let addBookVC = segue.destination as? BookDetailViewController {
+//		guard let destination = segue.destination as? BookDetailViewController else { return }
+//		destination.bookController = bookController
+//
+//		if segue.identifier == "ShowDetailSegue" {
+//			guard let cell = sender as? BookTableViewCell else { return }
+//			destination.book = cell.book
+//		}
+		//if segue.identifier == "AddBookSegue"
+			guard let addBookVC = segue.destination as? BookDetailViewController else { return }
 			addBookVC.bookController = bookController
-		} else if segue.identifier == "ShowDetailSegue" {
-			if let indexPath = tableView.indexPathForSelectedRow,
-				let showDetailVC = segue.destination as? BookDetailViewController {
-				showDetailVC.book = bookFor(indexpath: indexPath)
-				showDetailVC.bookController = bookController
+			if segue.identifier == "ShowDetailSegue" {
+				guard let showDetailVC = sender as? BookTableViewCell else { return }
+				addBookVC.book = showDetailVC.book
+
+				//showDetailVC.book = book(for: indexPath)
+				//showDetailVC.bookController = bookController
 			}
 		}
 	}
-}
-}
+
+
